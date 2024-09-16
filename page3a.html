@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VKY originals</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .logo {
+            width: 150px; /* Adjust logo size as needed */
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #555;
+            text-align: left;
+        }
+        select {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s;
+        }
+        select:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .message {
+            margin-top: 15px;
+            color: #e74c3c;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <img src="schoollogo.jpg" alt="School Logo" class="logo">
+    <h1>download photos</h1>
+
+    <label for="event">Select Event:</label>
+    <select id="event">
+        <option value="">--Choose an event--</option>
+        <option value="sports_day"></option>
+        <option value="annual_day"></option>
+        <option value="science_fair"></option>
+        <option value="art_exhibition"></option>
+        <option value="music_concert"></option>
+        <option value="teachers_day">Teacher's Day</option>
+        <!-- Add more events here -->
+    </select>
+
+    <label for="class">Select Class:</label>
+    <select id="class">
+        <option value="">Choose a class</option>
+        <option value="class_1"></option>
+        <option value="class_2"></option>
+        <option value="class_3"></option>
+        <option value="class_4"></option>
+        <option value="class_5"></option>
+        <option value="class_6"></option>
+        <option value="class_7"></option>
+        <option value="class_8"></option>
+        <option value="class_9">Class 9</option>
+        <option value="class_10">Class 10</option>
+    </select>
+
+    <button onclick="redirectToGooglePhotos()">Download Photos</button>
+
+    <div id="message" class="message"></div>
+</div>
+
+<script>
+    function redirectToGooglePhotos() {
+        var event = document.getElementById('event').value;
+        var classSelection = document.getElementById('class').value;
+        var messageDiv = document.getElementById('message');
+
+        if (event && classSelection) {
+            var googlePhotosLinks = {
+                "teachers_day_class_9": "https://photos.app.goo.gl/dH5RALAHLDm9K8G18",
+                "annual_day_class_": "https://photos.google.com/annual_day_class_2_album_link",
+                // Add more combinations here
+            };
+
+            var selectedKey = event + "_" + classSelection;
+
+            if (googlePhotosLinks[selectedKey]) {
+                window.location.href = googlePhotosLinks[selectedKey];
+            } else {
+                messageDiv.textContent = "No album found for the selected event and class!";
+            }
+        } else {
+            messageDiv.textContent = "Please select both event and class.";
+        }
+    }
+</script>
+
+</body>
+</html>
